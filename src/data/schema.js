@@ -1,4 +1,4 @@
-import { resolvers } from './resolvers';
+import { resolvers } from './resolvers.js';
 import { makeExecutableSchema } from 'graphql-tools';
 
 const typeDefs = `
@@ -12,6 +12,7 @@ const typeDefs = `
 
     type Query {
         getContacts: [Contact]
+        getOneContact(id: ID!): Contact
     }
 
     input ContactInput {
@@ -24,6 +25,8 @@ const typeDefs = `
 
     type Mutation {
         createContact(input: ContactInput): Contact
+        updateContact(input: ContactInput): Contact
+        deleteContact(id: ID!): String
     }
 `
 const schema = makeExecutableSchema({ typeDefs, resolvers });

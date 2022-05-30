@@ -1,6 +1,7 @@
 import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import { schema } from './src/data/schema';
+import { schema } from './src/data/schema.js';
+import { graphqlHTTP } from 'express-graphql'; // ES6
+
 
 const app = express();
 const PORT = 8080;
