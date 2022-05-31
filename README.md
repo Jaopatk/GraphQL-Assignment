@@ -19,6 +19,7 @@ using terminal in Visual Studio Code and running the command line below.
 and go to localhost:8080/graphql
 
 ## Playground
+using GgrapiQL
 add list and some tasks
 ```js
 mutation {
