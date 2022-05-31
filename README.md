@@ -28,17 +28,16 @@ add list and some tasks
 ```js
 mutation {
   createList(input: {title: "listTitle", 
-  task: [{title: "intask", status: false},{title: "intask2", status: false}]}) 
-  {
+  task: [{title: "intask1", status: false, position: 1},{title: "intask2", status: false,  position: 2}]}) {
     id
     title
     task {
       title
       status
+      position
     }
   }
 }
-
 ```
 
 to get all List and task

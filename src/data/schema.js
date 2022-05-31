@@ -26,6 +26,7 @@ const typeDefs = `
         id: ID
         title: String
         status: Boolean
+        position: Int
     }
 
     """
@@ -51,13 +52,14 @@ const typeDefs = `
         id: ID
         title: String
         status: Boolean
+        position: Int
     }
     """
     Edit some part of a to-do list
     """ 
     type Mutation { 
         createList(input: ListInput): List
-        updateTask(input: ListInput): List
+        #updateTask(input: ListInput): List
         updateList(input: ListInput): List
     }
 `;
