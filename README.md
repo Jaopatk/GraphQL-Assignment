@@ -11,7 +11,7 @@ Set up the MongoDB environment and run by running the command line below.
 ```bash
 "C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath="c:\data\db"
 ```
-and create 
+
 ## Start the app
 using terminal in Visual Studio Code and running the command line below.
 ```bash
@@ -57,7 +57,7 @@ to get all List and task
 edit list title
 ```js
 mutation{
-  updateList(input:{id:"ur_list_id_in_mongoDB",title:"newtitle"}){
+  updateList(input:{id:"ur_list_id_from_mongoDB",title:"newtitle"}){
     id
     title
   }
