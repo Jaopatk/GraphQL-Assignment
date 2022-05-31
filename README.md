@@ -20,6 +20,7 @@ and go to localhost:8080/graphql
 
 ## Playground
 using GgrapiQL
+
 add list and some tasks
 ```js
 mutation {
