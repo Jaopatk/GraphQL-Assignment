@@ -1,34 +1,66 @@
-import { resolvers } from './resolvers.js';
-import { makeExecutableSchema } from 'graphql-tools';
+import { resolvers } from "./resolvers.js";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
 const typeDefs = `
-    type Contact {
+    """
+    List of to-do list
+    """
+    type List {
         id: ID
-        firstName: String
-        lastName: String
-        email: String
-        company: String
+
+        """
+        List title
+        """
+        title: String
+        
+        """
+        tasks in the list
+        """
+        task: [Task]
     }
 
+    """
+    Task in to-do list
+    """
+    type Task{
+        id: ID
+        title: String
+        status: Boolean
+    }
+
+    """
+    show all list and its components
+    """
     type Query {
-        getContacts: [Contact]
-        getOneContact(id: ID!): Contact
+        getLists: [List]
     }
 
-    input ContactInput {
+    """
+    Input of a list 
+    """
+    input ListInput {
         id: ID
-        firstName: String
-        lastName: String
-        email: String
-        company: String
+        title: String
+        task: [TaskInput]
     }
 
-    type Mutation {
-        createContact(input: ContactInput): Contact
-        updateContact(input: ContactInput): Contact
-        deleteContact(id: ID!): String
+    """
+    Input of a task
+    """
+    input TaskInput {
+        id: ID
+        title: String
+        status: Boolean
     }
-`
+    """
+    Edit some part of a to-do list
+    """ 
+    type Mutation { 
+        createList(input: ListInput): List
+        updateTask(input: ListInput): List
+        updateList(input: ListInput): List
+    }
+`;
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 export { schema };
