@@ -1,26 +1,28 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 // Mongo connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/contacts', {
-    useNewUrlParser: true,
+mongoose.connect("mongodb://localhost/contacts", {
+  useNewUrlParser: true,
 });
 
-const contactSchema = new mongoose.Schema({
-    firstName: {
-        type: String
-    },
-    lastName: {
-        type: String
-    },
-    email: {
-        type: String
-    },
-    company: {
-        type: String
-    }
+const TaskSchema = new Schema({
+  title: {
+    type: String,
+  },
+  status: {
+    type: Boolean,
+  },
 });
 
-const Contacts = mongoose.model('contacts', contactSchema);
+const ListSchema = new Schema({
+  title: {
+    type: String,
+  },
+  task: [TaskSchema],
+});
 
-export { Contacts };
+const Lists = mongoose.model("contacts", ListSchema);
+
+export { Lists };

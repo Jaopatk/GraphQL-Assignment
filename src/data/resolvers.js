@@ -1,52 +1,55 @@
-import { Contacts } from './dbConnectors.js';
+import { Lists } from "./dbConnectors.js";
 
 export const resolvers = {
-    Query: {
-        getContacts: () => {
-            return Contacts.find();
-        },
-        getOneContact: (root, { id }) => {
-            return new Promise((resolve, object) => {
-               Contacts.findById(id, (err, contact) => {
-                    if (err) reject(err)
-                    else resolve(contact)
-                })
-            }) 
-        }
+  Query: {
+    getLists: () => {
+      return Lists.find();
     },
-    Mutation: {
-        createContact: (root, { input}) => {
-            const newContact = new Contacts({
-                firstName: input.firstName,
-                lastName: input.lastName,
-                email: input.email,
-                company: input.company,
-            });
+  },
+  Mutation: {
+    createList: (parent, { input }, context, info) => {
+        const arr = input.task
+        arr.forEach(e => console.log(e))
 
-            newContact.id = newContact._id;
-
-            return new Promise((resolve, object) => {
-                newContact.save((err) => {
-                    if (err) reject(err)
-                    else resolve(newContact)
-                })
+      const newList = new Lists({
+        title: input.title,
+        task: [
+          {
+            title: input.task[0].title,
+            status: input.task[0].status,
+          },
+          {
+            title: input.task[1].title,
+            status: input.task[1].status,
+          },
+        ],
+      });
+      newList.id = newList._id;
+      return newList.save();
+    },
+    updateList: (parent, { input }) => {
+        console.log("update List")
+        
+        return new Promise((resolve, object) => {
+            Lists.findOneAndUpdate({ _id: input.id}, input , { new: true }, (err, list) => {
+                if(err) throw err
+                else resolve(list)
             })
-        },
-         updateContact: (root, { input }) => {
-            return new Promise((resolve, object) => {
-                Contacts.findOneAndUpdate({ _id: input.id}, input, { new: true }, (err, contact) => {
-                    if (err) reject(err)
-                    else resolve(contact)
-                })
+        })
+    },
+    updateTask: (parent, { input }) => {
+        console.log("update Task")
+        
+        const objIndex = task.findIndex((obj => obj.id == { _id: input.id}))
+        
+        return new Promise((resolve, object) => {
+            Lists.findOneAndUpdate({ _id: input.id}, input , { new: true }, (err, list) => {
+                if(err) throw err
+                else resolve(list)
             })
-        },
-        deleteContact: (root, { id }) => {
-            return new Promise((resolve, object) => {
-                Contacts.remove({ _id: id}, (err) => {
-                    if (err) reject(err)
-                    else resolve('Successfully deleted contact!')
-                })
-            })
-        }
+        })
     }
-}
+
+
+  },
+};
