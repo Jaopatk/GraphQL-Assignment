@@ -22,7 +22,7 @@ and go to localhost:8080/graphql
 ## Playground
 using GraphiQL
 
-Lists Database and lists collections will be created
+"Lists" Database and "lists" collections will be created
 
 add list and some tasks
 ```js
