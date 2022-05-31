@@ -11,6 +11,7 @@ Set up the MongoDB environment and run by running the command line below.
 ```bash
 "C:\Program Files\MongoDB\Server\5.0\bin\mongod.exe" --dbpath="c:\data\db"
 ```
+and create 
 ## Start the app
 using terminal in Visual Studio Code and running the command line below.
 ```bash
@@ -20,6 +21,8 @@ and go to localhost:8080/graphql
 
 ## Playground
 using GraphiQL
+
+Lists Database and lists collections will be created
 
 add list and some tasks
 ```js
