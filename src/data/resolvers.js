@@ -52,7 +52,7 @@ export const resolvers = {
             })
         })
     },
-    updateTask: (parent, {id, input }) => {
+   /* updateTask: (parent, {id, input }) => {
       console.log("update Task")
       const lid = id //list id
       function findCreator(id) {
@@ -73,6 +73,6 @@ export const resolvers = {
               else resolve(list)
           })
       })
-  },
+  },*/
   },
 };
