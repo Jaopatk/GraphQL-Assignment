@@ -59,7 +59,7 @@ const typeDefs = `
     """ 
     type Mutation { 
         createList(input: ListInput): List
-        #updateTask(input: ListInput): List
+        # updateTask(id: ID!, input: ListInput): List
         updateList(input: ListInput): List
     }
 `;

@@ -7,6 +7,7 @@ mongoose.connect("mongodb://localhost/Lists", {
   useNewUrlParser: true,
 });
 
+//models
 const TaskSchema = new Schema({
   title: {
     type: String

@@ -10,6 +10,7 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => res.send(`GraphQL is running!`));
 
+//routes
 app.use(
   "/graphql",
   graphqlHTTP({

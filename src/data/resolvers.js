@@ -1,5 +1,6 @@
 import { Lists } from "./dbConnectors.js";
 
+//controllers
 export const resolvers = {
   Query: {
     getLists: () => {
@@ -14,12 +15,14 @@ export const resolvers = {
           console.log(element.status),
           console.log(element.position)
         })*/
-
+        /*const ao={};
+        ao = input.task
+        console.log(ao)*/
       const newList = new Lists({
         title: input.title,
         task: [
         {
-          title: input.task[0].title,
+          title: ao[0].title,
           status: input.task[0].status,
           position: input.task[0].position
         },
@@ -49,5 +52,27 @@ export const resolvers = {
             })
         })
     },
+    updateTask: (parent, {id, input }) => {
+      console.log("update Task")
+      const lid = id //list id
+      function findCreator(id) {
+        return (item) => item.id === id;
+     }
+
+     Lists.find({ _id: input.id },input,{ new: true },
+        function (err, cart) {
+          if (err) throw err;
+          console.log(cart);
+          res.json(cart);
+        }
+      );
+      
+      return new Promise((resolve, object) => {
+          Lists.findOneAndUpdate({ _id: input.id}, input , { new: true }, (err, list) => {
+              if(err) reject (err)
+              else resolve(list)
+          })
+      })
+  },
   },
 };
